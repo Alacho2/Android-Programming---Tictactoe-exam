@@ -1,15 +1,31 @@
 package play.alacho.no.Fragments
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import android.content.Context
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
-class FragmentHelper{
+open class FragmentHelper : Fragment() {
 
+  internal lateinit var listener: OnFragmentChange
 
-  private var fragmentTransaction: FragmentManager = activity!!.supportFragmentManager
+  private lateinit var fragmentTransaction: FragmentManager
 
-  fun changeFragment(id: Int, fragment: Fragment){
-    fragmentTransaction.beginTransaction().replace(id, fragment).addToBackStack(null).commit()
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    fragmentTransaction = activity!!.supportFragmentManager
+  }
+
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
+    if(context is OnFragmentChange){
+      listener = context
+    }
+  }
+
+  interface OnFragmentChange {
+    fun changeFragment(id: Int, fragment: Fragment)
   }
 
 }

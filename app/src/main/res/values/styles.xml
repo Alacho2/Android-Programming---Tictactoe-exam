@@ -1,6 +1,7 @@
 <resources>
 
     <style name="TicTacToe" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorAccent">@color/logoColor</item>
         <item name="android:windowBackground">@color/darkBackground</item>
         <item name="android:navigationBarColor">@color/darkBackground</item>
         <item name="android:statusBarColor">@color/darkBackground</item>

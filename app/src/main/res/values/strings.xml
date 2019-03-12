@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">pgr202_tictactoe</string>
     <string name="play_button">Play</string>
+    <string name="tic_10_pac_10_toe">Tic Pac Toe</string>
+    <string name="play">Play</string>
+    <string name="highscore">Highscore</string>
 </resources>

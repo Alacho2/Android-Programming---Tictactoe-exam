@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 import play.alacho.no.pgr202_tictactoe.R
-import play.alacho.no.Audio.Fragments.MainPageFragment
+import play.alacho.no.Fragments.MainPageFragment
 
 class MainActivity : AppCompatActivity() {
 

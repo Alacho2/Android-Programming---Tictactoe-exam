@@ -1,4 +1,4 @@
-package play.alacho.no.Audio.Fragments
+package play.alacho.no.Fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

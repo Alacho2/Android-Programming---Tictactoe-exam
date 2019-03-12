@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.initiate_game_fragment.*
+import org.apache.commons.lang3.time.StopWatch
+import play.alacho.no.MainActivity
 import play.alacho.no.pgr202_tictactoe.R
 
 class InitiateGameFragment : Fragment(), View.OnClickListener{
@@ -16,8 +18,6 @@ class InitiateGameFragment : Fragment(), View.OnClickListener{
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    something.setOnClickListener(this)
-    something2.setOnClickListener(this)
   }
 
   override fun onClick(v: View) {

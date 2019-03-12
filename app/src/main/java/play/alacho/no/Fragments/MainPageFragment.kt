@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.main_fragment.*
 import play.alacho.no.Audio.AudioPlayer
 import play.alacho.no.pgr202_tictactoe.R
 
-class MainPageFragment : Fragment(), View.OnClickListener{
+class MainPageFragment : Fragment(), FragmentHelper, View.OnClickListener{
 
   private lateinit var fragmentTransaction: FragmentManager
 
@@ -21,7 +21,7 @@ class MainPageFragment : Fragment(), View.OnClickListener{
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    fragmentTransaction = activity!!.supportFragmentManager
+    //fragmentTransaction = activity!!.supportFragmentManager
     playGameBtn.setOnClickListener(this)
     highScoreBtn.setOnClickListener(this)
   }
@@ -39,6 +39,9 @@ class MainPageFragment : Fragment(), View.OnClickListener{
 
   fun fragmentChanger(id: Int, fragment: Fragment){
     fragmentTransaction.beginTransaction().replace(id, fragment).addToBackStack(null).commit()
-    AudioPlayer.startAudio(activity!!.applicationContext, R.raw.pacman_eatfruit)
+
+    AudioPlayer.init(activity!!.applicationContext, R.raw.pacman_eatfruit)
+    AudioPlayer.startAudio()
+    //AudioPlayer.startAudio(activity!!.applicationContext, R.raw.pacman_eatfruit)
   }
 }

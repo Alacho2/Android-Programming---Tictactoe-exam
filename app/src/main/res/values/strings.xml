@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">pgr202_tictactoe</string>
+    <string name="play_button">Play</string>
+</resources>

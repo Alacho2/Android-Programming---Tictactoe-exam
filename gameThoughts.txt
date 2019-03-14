@@ -1,3 +1,7 @@
 Player should be able to select image to play with
 Player should be able to set name and see it in the game fragment
 Player should be able to choose PvP or PvE
+
+The second app should look into Toasty for cool toasts
+https://github.com/GrenderG/Toasty
+https://github.com/Muddz/StyleableToast

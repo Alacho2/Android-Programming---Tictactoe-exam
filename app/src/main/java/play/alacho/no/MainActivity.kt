@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), FragmentHelper.OnFragmentChange {
 
   override fun changeFragment(id: Int, fragment: Fragment) {
     fragmentManager.beginTransaction()
-      .setCustomAnimations(R.anim.abc_slide_in_top, R.anim.abc_slide_in_bottom)
+      .setCustomAnimations(R.anim.abc_fade_in,  0)
       .replace(id, fragment)
       .addToBackStack(null)
       .commit()

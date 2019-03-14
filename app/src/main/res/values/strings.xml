@@ -8,4 +8,8 @@
     <string name="nameHintTwo">Player Two Name</string>
     <string name="vs_ai">vs AI</string>
     <string name="botName">TTTBot</string>
+    <string name="pacImageDesc">Pacman</string>
+    <string name="cheImageDesc">Cherry</string>
+    <string name="inkImageDesc">Inky</string>
+    <string name="start_game">Start Game</string>
 </resources>

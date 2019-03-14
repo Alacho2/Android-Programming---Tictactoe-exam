@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
+import play.alacho.no.Audio.AudioPlayer
 import play.alacho.no.Fragments.FragmentHelper
 
 import play.alacho.no.pgr202_tictactoe.R
@@ -27,5 +28,6 @@ class MainActivity : AppCompatActivity(), FragmentHelper.OnFragmentChange {
       .replace(id, fragment)
       .addToBackStack(null)
       .commit()
+    AudioPlayer.init(this, R.raw.pacman_eatfruit).startAudio()
   }
 }

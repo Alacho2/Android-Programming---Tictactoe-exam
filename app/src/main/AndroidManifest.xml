@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="play.alacho.no.pgr202_tictactoe">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="play.alacho.no.pgr202_tictactoe">
 
     <application
             android:allowBackup="true"
@@ -8,8 +9,10 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/TicTacToe">
-        <activity android:name="play.alacho.no.MainActivity">
+            android:theme="@style/TicTacToe"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name="play.alacho.no.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

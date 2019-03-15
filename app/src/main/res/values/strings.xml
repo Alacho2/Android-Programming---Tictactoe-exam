@@ -12,4 +12,5 @@
     <string name="cheImageDesc">Cherry</string>
     <string name="inkImageDesc">Inky</string>
     <string name="start_game">Start Game</string>
+    <string name="choose_your_weapon">Choose your weapon</string>
 </resources>

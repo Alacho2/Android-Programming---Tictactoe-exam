@@ -58,54 +58,69 @@
         android:id="@+id/pacmanImage"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
-        android:src="@mipmap/pacman"
-        android:scaleType="centerInside"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
         android:background="@color/transparent"
-        app:layout_constraintStart_toStartOf="@+id/playerOneNameInput"
-        app:layout_constraintTop_toBottomOf="@+id/botSelector"
         android:contentDescription="@string/pacImageDesc"
-        android:tag="@string/pacImageDesc"/>
+        android:scaleType="centerInside"
+        android:src="@mipmap/pacman"
+        android:tag="@string/pacImageDesc"
+        app:layout_constraintStart_toStartOf="@+id/playerOneNameInput"
+        app:layout_constraintTop_toBottomOf="@+id/botSelector" />
 
     <ImageButton
         android:id="@+id/cherryImage"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="36dp"
-        android:src="@mipmap/cherry"
+        android:layout_marginStart="40dp"
         android:background="@color/transparent"
         android:contentDescription="@string/cheImageDesc"
         android:scaleType="centerInside"
-        app:layout_constraintStart_toEndOf="@+id/pacmanImage"
+        android:src="@mipmap/cherry"
         android:tag="@string/cheImageDesc"
+        app:layout_constraintStart_toEndOf="@+id/pacmanImage"
         app:layout_constraintTop_toTopOf="@+id/pacmanImage" />
 
     <ImageButton
         android:id="@+id/inkyImage"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="36dp"
-        android:src="@mipmap/inky"
+        android:layout_marginStart="40dp"
         android:background="@color/transparent"
+        android:contentDescription="@string/inkImageDesc"
         android:scaleType="centerInside"
-        app:layout_constraintStart_toEndOf="@+id/cherryImage"
-        app:layout_constraintTop_toTopOf="@+id/pacmanImage"
+        android:src="@mipmap/inky"
         android:tag="@string/inkImageDesc"
-        android:contentDescription="@string/inkImageDesc" />
+        app:layout_constraintStart_toEndOf="@+id/cherryImage"
+        app:layout_constraintTop_toTopOf="@+id/pacmanImage" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/choose_your_weapon"
+        android:textColor="@color/disabledColor"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/pacmanImage"
+        app:layout_constraintStart_toStartOf="@+id/playerOneNameInput"
+        app:layout_constraintTop_toBottomOf="@+id/botSelector"
+        app:layout_constraintVertical_bias="0.8" />
 
     <Button
         android:id="@+id/startGameBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
         android:background="@mipmap/btn_background"
         android:contentDescription="@string/start_game"
         android:text="@string/start_game"
         android:textColor="@color/logoColor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/pacmanImage"
-        app:layout_constraintTop_toBottomOf="@+id/cherryImage" />
+        app:layout_constraintTop_toBottomOf="@+id/pacmanImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

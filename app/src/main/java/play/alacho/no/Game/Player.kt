@@ -4,9 +4,9 @@ import android.widget.ImageButton
 
 class Player {
 
-  private var name: String = ""
-  private var resource: Int = 0
-  private var image: ImageButton? = null
+  var name: String = ""
+  var resource: Int = 0
+  var image: ImageButton? = null
 
   constructor()
 

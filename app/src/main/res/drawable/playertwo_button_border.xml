@@ -6,6 +6,7 @@
                 android:color="@color/logoColor"
                 android:width="2dp"
                 />
+            <corners android:radius="5dp"/>
         </shape>
     </item>
 </selector>

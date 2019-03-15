@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.initiate_game_fragment.*
 import play.alacho.no.Game.Player
@@ -17,7 +16,8 @@ class InitiateGameFragment : Fragment(), View.OnClickListener {
   private var playerOne: Player = Player()
   private var playerTwo: Player = Player()
   private var playerOneSelected: Boolean = false
-  private var playerTwoSelected: Boolean = false
+  private var onePlayerMode: Boolean = false
+  private var names: MutableList<String> = mutableListOf("Inky", "Cherry", "Pacman")
 
   companion object {
     private const val PADDING_VALUE: Int = 30
@@ -50,61 +50,76 @@ class InitiateGameFragment : Fragment(), View.OnClickListener {
   }
 
   private fun botSelector() {
-    Log.d("Inkyimage", inkyImage.paddingBottom.toString())
-    if (botSelector.isChecked) {
+
+    onePlayerMode = botSelector.isChecked
+
+    var randomName = names.random()
+
+    while(playerOne.image?.tag == randomName){
+      randomName = names.random()
+    }
+
+
+    //Hent ut et navn fra arrayet, sjekk om det navnet er lik det som ligger i playerOne sin tag, bytt
+    if (onePlayerMode){
       playerTwoNameInput.isEnabled = false
       currentValue = playerTwoNameInput.text.toString()
-      setImageValues("Inky", R.drawable.playertwo_button_border)
       playerTwoNameInput.setText(getString(R.string.botName))
-      playerTwoSelected = true
+      if(playerTwo.image?.background == null) {
+        setImageValues(playerTwo, randomName, R.drawable.playertwo_button_border)
+      }
     } else {
       playerTwoNameInput.isEnabled = true
       playerTwoNameInput.setText(currentValue)
-      inkyImage.isEnabled = true
-      inkyImage.setBackgroundResource(0)
-      inkyImage.setPadding(0, 0, 0, 0)
-      playerTwoSelected = false
+
+      //Clear the values before setting allowing new selection
+      playerTwo.image?.setBackgroundResource(0)
+      playerTwo.image?.setPadding(0,0,0,0)
+      playerTwo.image?.isEnabled = true
+      playerTwo.image = null
     }
   }
 
-  /*
-    We need to save a reference to which image a player picked.
-    0 = Pacman
-    1 = Cherry
-    2 = Inky
-   */
-
   private fun handleImageClick(tag: String) {
 
-    if (!playerOneSelected) {
-      setImageValues(tag, R.drawable.player_button_border)
+    if (playerOne.image == null && !playerOneSelected){
+      setImageValues(playerOne, tag, R.drawable.player_button_border)
       playerOneSelected = true
-    } else if (!playerTwoSelected) {
-      setImageValues(tag, R.drawable.playertwo_button_border)
+    } else if (playerTwo.image == null){
+      setImageValues(playerTwo, tag, R.drawable.playertwo_button_border)
+    }
+
+    Log.d("Soemthing", playerTwo.image.toString())
+
+    /* if (!playerOneSelected) {
+      setImageValues(playerOne, tag, R.drawable.player_button_border)
+      playerOneSelected = true
+    } else if (!playerTwoSelected && !botSelector.isChecked) {
+      setImageValues(playerTwo, tag, R.drawable.playertwo_button_border)
       playerTwoSelected = true
     }
 
     else if (playerTwoSelected && playerTwoSelected){
 
-    }
+    } */
 
   }
-  private fun setImageValues(tag: String?, resource: Int){
-
-    var image: ImageButton? = null
+  private fun setImageValues(player: Player, tag: String?, resource: Int){
 
     when (tag) {
-      "Inky" -> { image = inkyImage }
-      "Cherry" -> { image = cherryImage }
-      "Pacman" -> { image = pacmanImage }
+      "Inky" -> { player.image = inkyImage }
+      "Cherry" -> { player.image = cherryImage }
+      "Pacman" -> { player.image = pacmanImage }
     }
-    image?.setBackgroundResource(resource)
-    image?.setPadding(PADDING_VALUE, PADDING_VALUE, PADDING_VALUE, PADDING_VALUE)
-    image?.isEnabled = false
+    player.image?.setBackgroundResource(resource)
+    player.image?.setPadding(PADDING_VALUE, PADDING_VALUE, PADDING_VALUE, PADDING_VALUE)
+    player.image?.isEnabled = false
   }
 
   private fun beginGame() {
+
     //Send the data to the next fragment which is the actual game
+    //Populate the player objects and pass it into the game
   }
 
 }

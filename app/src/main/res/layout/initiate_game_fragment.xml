@@ -9,118 +9,131 @@
 
     <EditText
         android:id="@+id/playerOneNameInput"
-        android:layout_width="150dp"
+        android:layout_width="154dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/nameHintOne"
-        android:textColor="@color/playerOneColor"
         android:inputType="textPersonName"
+        android:maxLength="14"
+        android:textColor="@color/playerOneColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:maxLength="14"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/playerTwoNameInput"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:textColor="@drawable/edit_text_selector"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/nameHintTwo"
         android:inputType="textPersonName"
+        android:maxLength="14"
+        android:textColor="@drawable/edit_text_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toEndOf="@+id/playerOneNameInput"
-        app:layout_constraintTop_toTopOf="@+id/playerOneNameInput"
-        android:maxLength="14"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/botSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="104dp"
         android:switchPadding="10dp"
-        app:layout_constraintStart_toStartOf="@+id/playerOneNameInput"
-        app:layout_constraintTop_toBottomOf="@+id/playerOneNameInput" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="28dp"
         android:text="@string/vs_ai"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/botSelector"
-        app:layout_constraintTop_toBottomOf="@+id/playerTwoNameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/playerOneNameInput" />
 
     <ImageButton
         android:id="@+id/pacmanImage"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="168dp"
         android:background="@color/transparent"
         android:contentDescription="@string/pacImageDesc"
         android:scaleType="centerInside"
         android:src="@mipmap/pacman"
         android:tag="@string/pacImageDesc"
-        app:layout_constraintStart_toStartOf="@+id/playerOneNameInput"
-        app:layout_constraintTop_toBottomOf="@+id/botSelector" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/cherryImage"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/transparent"
         android:contentDescription="@string/cheImageDesc"
         android:scaleType="centerInside"
         android:src="@mipmap/cherry"
         android:tag="@string/cheImageDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toEndOf="@+id/pacmanImage"
-        app:layout_constraintTop_toTopOf="@+id/pacmanImage" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageButton
         android:id="@+id/inkyImage"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/transparent"
         android:contentDescription="@string/inkImageDesc"
         android:scaleType="centerInside"
         android:src="@mipmap/inky"
         android:tag="@string/inkImageDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toEndOf="@+id/cherryImage"
-        app:layout_constraintTop_toTopOf="@+id/pacmanImage" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
         android:text="@string/choose_your_weapon"
         android:textColor="@color/disabledColor"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/pacmanImage"
-        app:layout_constraintStart_toStartOf="@+id/playerOneNameInput"
-        app:layout_constraintTop_toBottomOf="@+id/botSelector"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botSelector" />
 
     <Button
         android:id="@+id/startGameBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="36dp"
         android:background="@mipmap/btn_background"
         android:contentDescription="@string/start_game"
         android:text="@string/start_game"
         android:textColor="@color/logoColor"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/pacmanImage"
-        app:layout_constraintTop_toBottomOf="@+id/pacmanImage" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cherryImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

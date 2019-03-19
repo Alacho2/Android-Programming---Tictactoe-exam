@@ -16,11 +16,13 @@
         android:hint="@string/nameHintOne"
         android:inputType="textPersonName"
         android:maxLength="14"
+        android:gravity="center"
         android:textColor="@color/playerOneColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/playerTwoNameInput"
@@ -29,6 +31,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:ems="10"
         android:hint="@string/nameHintTwo"
         android:inputType="textPersonName"
@@ -37,13 +40,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toEndOf="@+id/playerOneNameInput"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill" />
 
     <Switch
         android:id="@+id/botSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="96dp"
         android:switchPadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"
@@ -54,7 +58,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="21dp"
         android:text="@string/vs_ai"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -65,7 +69,7 @@
         android:id="@+id/pacmanImage"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="156dp"
         android:background="@color/transparent"
         android:contentDescription="@string/pacImageDesc"
         android:scaleType="centerInside"
@@ -81,7 +85,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="9dp"
         android:layout_marginEnd="8dp"
         android:background="@color/transparent"
         android:contentDescription="@string/cheImageDesc"
@@ -98,7 +102,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="9dp"
         android:layout_marginEnd="8dp"
         android:background="@color/transparent"
         android:contentDescription="@string/inkImageDesc"
@@ -120,7 +124,8 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botSelector" />
+        app:layout_constraintTop_toBottomOf="@+id/botSelector"
+        android:textStyle="italic"/>
 
     <Button
         android:id="@+id/startGameBtn"

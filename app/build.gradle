@@ -32,4 +32,5 @@ dependencies {
     implementation 'androidx.mediarouter:mediarouter:1.1.0-alpha01'
     implementation "org.apache.commons:commons-lang3:$commons_lang_version"
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 }

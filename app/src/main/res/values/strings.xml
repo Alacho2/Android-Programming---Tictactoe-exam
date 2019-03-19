@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">pgr202_tictactoe</string>
+    <string name="app_name">TicPacToe</string>
     <string name="play_button">Play</string>
     <string name="tic_10_pac_10_toe">tIc pAc tOe</string>
     <string name="play">Play</string>

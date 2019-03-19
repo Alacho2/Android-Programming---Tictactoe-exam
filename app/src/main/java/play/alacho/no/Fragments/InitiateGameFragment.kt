@@ -1,38 +1,41 @@
 package play.alacho.no.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.initiate_game_fragment.*
+import kotlinx.android.synthetic.main.fragment_initiate_game.*
 import play.alacho.no.Game.Player
 import play.alacho.no.pgr202_tictactoe.R
 
-class InitiateGameFragment : Fragment(), View.OnClickListener {
+class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
 
   private var currentValue: String = ""
   private var playerOne: Player = Player()
   private var playerTwo: Player = Player()
   private var playerOneSelected: Boolean = false
   private var onePlayerMode: Boolean = false
-  private var names: MutableList<String> = mutableListOf("Inky", "Cherry", "Pacman")
+  private var names: MutableList<String> = mutableListOf()
 
   companion object {
     private const val PADDING_VALUE: Int = 30
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.initiate_game_fragment, container, false)
+    return inflater.inflate(R.layout.fragment_initiate_game, container, false)
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     botSelector.setOnClickListener(this)
+    startGameBtn.setOnClickListener(this)
     pacmanImage.setOnClickListener(this)
     cherryImage.setOnClickListener(this)
     inkyImage.setOnClickListener(this)
+    names = mutableListOf(
+      getString(R.string.inkImageDesc),
+      getString(R.string.cheImageDesc),
+      getString(R.string.pacImageDesc))
   }
 
   override fun onClick(v: View) {
@@ -81,35 +84,19 @@ class InitiateGameFragment : Fragment(), View.OnClickListener {
   }
 
   private fun handleImageClick(tag: String) {
-
     if (playerOne.image == null && !playerOneSelected){
       setImageValues(playerOne, tag, R.drawable.player_button_border)
       playerOneSelected = true
     } else if (playerTwo.image == null){
       setImageValues(playerTwo, tag, R.drawable.playertwo_button_border)
     }
-
-    Log.d("Soemthing", playerTwo.image.toString())
-
-    /* if (!playerOneSelected) {
-      setImageValues(playerOne, tag, R.drawable.player_button_border)
-      playerOneSelected = true
-    } else if (!playerTwoSelected && !botSelector.isChecked) {
-      setImageValues(playerTwo, tag, R.drawable.playertwo_button_border)
-      playerTwoSelected = true
-    }
-
-    else if (playerTwoSelected && playerTwoSelected){
-
-    } */
-
   }
-  private fun setImageValues(player: Player, tag: String?, resource: Int){
 
+  private fun setImageValues(player: Player, tag: String?, resource: Int){
     when (tag) {
-      "Inky" -> { player.image = inkyImage }
-      "Cherry" -> { player.image = cherryImage }
-      "Pacman" -> { player.image = pacmanImage }
+      getString(R.string.inkImageDesc) -> { player.image = inkyImage }
+      getString(R.string.cheImageDesc) -> { player.image = cherryImage }
+      getString(R.string.pacImageDesc) -> { player.image = pacmanImage }
     }
     player.image?.setBackgroundResource(resource)
     player.image?.setPadding(PADDING_VALUE, PADDING_VALUE, PADDING_VALUE, PADDING_VALUE)
@@ -117,6 +104,9 @@ class InitiateGameFragment : Fragment(), View.OnClickListener {
   }
 
   private fun beginGame() {
+
+    //TODO(Håvard) Remember to check if values are set. Make toast if they're not
+    listener.changeFragment(R.id.mainActivityFragment, Game())
 
     //Send the data to the next fragment which is the actual game
     //Populate the player objects and pass it into the game

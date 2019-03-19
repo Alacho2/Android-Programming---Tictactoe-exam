@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
-import play.alacho.no.Audio.AudioPlayer
-import play.alacho.no.Fragments.FragmentHelper
+import play.alacho.no.audio.AudioPlayer
+import play.alacho.no.fragments.FragmentHelper
 
 import play.alacho.no.pgr202_tictactoe.R
-import play.alacho.no.Fragments.MainPageFragment
+import play.alacho.no.fragments.MainPageFragment
 
 class MainActivity : AppCompatActivity(), FragmentHelper.OnFragmentChange {
 
@@ -23,11 +23,15 @@ class MainActivity : AppCompatActivity(), FragmentHelper.OnFragmentChange {
   }
 
   override fun changeFragment(id: Int, fragment: Fragment) {
-    fragmentManager.beginTransaction()
-      .setCustomAnimations(R.anim.abc_fade_in,  0)
-      .replace(id, fragment)
-      .addToBackStack(null)
-      .commit()
+
+    with(fragmentManager.beginTransaction()) {
+      setCustomAnimations(R.anim.abc_fade_in, 0)
+      replace(id, fragment)
+      addToBackStack(null)
+      commit()
+    }
+
+
     AudioPlayer.init(this, R.raw.pacman_eatfruit).startAudio()
   }
 }

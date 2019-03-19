@@ -1,4 +1,4 @@
-package play.alacho.no.Fragments
+package play.alacho.no.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_game.*
+import androidx.lifecycle.ViewModelProviders
+import play.alacho.no.game.SharedViewModel
 import play.alacho.no.pgr202_tictactoe.R
 
 class Game : FragmentHelper(), View.OnClickListener {
-
+  private lateinit var sharedViewModel:SharedViewModel
   private var isPlayerOne: Boolean = true
   var winningList: List<List<Int>> =
     listOf(
@@ -26,6 +27,14 @@ class Game : FragmentHelper(), View.OnClickListener {
       listOf(3,5,7) //Cross right to left
     )
 
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    sharedViewModel = activity?.run {
+      ViewModelProviders.of(this).get(SharedViewModel::class.java)
+    } ?: throw Exception("Invalid Activity")
+    sharedViewModel.safet= "IS MEGA COOOOOL"
+  }
+
   //TODO(Håvard) Should be a list in the Player object
   private var playerOneList: MutableList<Int> = mutableListOf()
   private var playerTwoList: MutableList<Int> = mutableListOf()
@@ -37,30 +46,42 @@ class Game : FragmentHelper(), View.OnClickListener {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
+    Log.d("Dust", sharedViewModel.safet)
+
     //Place a click listener on all buttons
     //TODO(Håvard) Might initiate as it's own button-class, to easily pass the ID. 9 objects????
 
-    for(i in 2..9){
+    for(i in 1..9){
       val resourceId: Int = resources.getIdentifier("button$i", "id", activity!!.packageName)
       val button: Button? = view?.findViewById(resourceId)
       button?.setOnClickListener(this)
     }
-    button1.setOnClickListener(this)
   }
 
 
   override fun onClick(v: View) {
 
     //val imageButton: ImageButton? = view?.findViewById(v.id)
+    val text: Button? = view?.findViewById(v.id)
 
     if(isPlayerOne){
-      //imageButton?.setBackgroundResource(R.mipmap.pacman) //Get it from the players resource
+      //text?.setBackgroundResource(R.mipmap.pacman) //Get it from the players resource
+      text?.text = "X"
       isPlayerOne = false
-      //playerOneList.add(v.tag.toString().toInt()) // Ikke så dum idé å bruke tag når man bruker image
+      playerOneList.add(v.tag.toString().toInt()) // Ikke så dum idé å bruke tag når man bruker image
     } else {
-      view?.findViewById<Button>(v.id)?.text = "O"
+      text?.text = "O"
       isPlayerOne = true
       playerTwoList.add(v.tag.toString().toInt())
+    }
+
+    val isFound: Int = checkWinner()
+    if(isFound != -1){
+      for(i in 1..9){
+        val resourceId: Int = resources.getIdentifier("button$i", "id", activity!!.packageName)
+        val button: Button? = view?.findViewById(resourceId)
+        button?.isEnabled = false
+      }
     }
 
     checkWinner()
@@ -69,17 +90,10 @@ class Game : FragmentHelper(), View.OnClickListener {
 
   }
 
-  private fun checkWinner(): Int{
-    for(item: List<Int> in winningList){
-      if(playerOneList.containsAll(item)){
-        Toast.makeText(context, "You did it!", Toast.LENGTH_SHORT).show()
-        return 1
-      } else if (playerTwoList.containsAll(item)) {
-        Toast.makeText(context, "Player 2 did it!", Toast.LENGTH_SHORT).show()
-        return 2
-      }
-    }
-    return -1
+  private fun checkWinner() = when {
+    winningList.any { item -> playerOneList.containsAll(item) } -> 1
+    winningList.any { item -> playerTwoList.containsAll(item) } -> 2
+    else -> -1
   }
 
 }

@@ -1,11 +1,11 @@
-package play.alacho.no.Fragments
+package play.alacho.no.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_initiate_game.*
-import play.alacho.no.Game.Player
+import play.alacho.no.game.Player
 import play.alacho.no.pgr202_tictactoe.R
 
 class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
@@ -61,7 +61,6 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
     while(playerOne.image?.tag == randomName){
       randomName = names.random()
     }
-
 
     //Hent ut et navn fra arrayet, sjekk om det navnet er lik det som ligger i playerOne sin tag, bytt
     if (onePlayerMode){

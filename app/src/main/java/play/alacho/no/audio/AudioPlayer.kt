@@ -1,4 +1,4 @@
-package play.alacho.no.Audio
+package play.alacho.no.audio
 
 import android.content.Context
 import android.media.MediaPlayer

@@ -1,4 +1,4 @@
-package play.alacho.no.Game
+package play.alacho.no.game
 
 import android.widget.ImageButton
 

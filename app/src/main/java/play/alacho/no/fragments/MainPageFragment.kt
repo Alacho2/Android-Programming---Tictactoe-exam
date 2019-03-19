@@ -1,14 +1,28 @@
-package play.alacho.no.Fragments
+package play.alacho.no.fragments
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_main.*
+import play.alacho.no.game.SharedViewModel
 import play.alacho.no.pgr202_tictactoe.R
 
 class MainPageFragment : FragmentHelper(), View.OnClickListener{
+
+
+  private lateinit var sharedViewModel: SharedViewModel
+
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    sharedViewModel = activity?.run {
+      ViewModelProviders.of(this).get(SharedViewModel::class.java)
+    } ?: throw Exception("Invalid Activity")
+    sharedViewModel.safet = "Is not cool"
+  }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.fragment_main, container, false)
@@ -18,6 +32,7 @@ class MainPageFragment : FragmentHelper(), View.OnClickListener{
     super.onActivityCreated(savedInstanceState)
     playGameBtn.setOnClickListener(this)
     highScoreBtn.setOnClickListener(this)
+
   }
 
   override fun onClick(v: View) {

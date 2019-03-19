@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_initiate_game.*
 import play.alacho.no.game.Player
+import play.alacho.no.game.SharedViewModel
 import play.alacho.no.pgr202_tictactoe.R
 
 class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
@@ -16,9 +18,18 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
   private var playerOneSelected: Boolean = false
   private var onePlayerMode: Boolean = false
   private var names: MutableList<String> = mutableListOf()
+  private lateinit var sharedViewModel: SharedViewModel
 
   companion object {
     private const val PADDING_VALUE: Int = 30
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    sharedViewModel = activity?.run {
+      ViewModelProviders.of(this).get(SharedViewModel::class.java)
+    } ?: throw Exception("Invalid Activity")
+
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -106,6 +117,9 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
 
     //TODO(Håvard) Remember to check if values are set. Make toast if they're not
     listener.changeFragment(R.id.mainActivityFragment, Game())
+
+    sharedViewModel.playerOne = playerOne
+    sharedViewModel.playerTwo = playerTwo
 
     //Send the data to the next fragment which is the actual game
     //Populate the player objects and pass it into the game

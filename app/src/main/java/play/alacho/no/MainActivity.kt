@@ -23,15 +23,12 @@ class MainActivity : AppCompatActivity(), FragmentHelper.OnFragmentChange {
   }
 
   override fun changeFragment(id: Int, fragment: Fragment) {
-
     with(fragmentManager.beginTransaction()) {
       setCustomAnimations(R.anim.abc_fade_in, 0)
       replace(id, fragment)
       addToBackStack(null)
       commit()
     }
-
-
     AudioPlayer.init(this, R.raw.pacman_eatfruit).startAudio()
   }
 }

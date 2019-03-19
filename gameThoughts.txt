@@ -5,3 +5,69 @@ Player should be able to choose PvP or PvE
 The second app should look into Toasty for cool toasts
 https://github.com/GrenderG/Toasty
 https://github.com/Muddz/StyleableToast
+
+
+Loope gjennom liste
+Åpning -> Velg et hjørne
+Player 1 har mulighet til å vinne -> Blokkere
+Bot har mulighet til å vinne -> Plassere for å vinne
+Hva er nåværende plassering -> plassere deretter (2 -> 5, 1 -> 5, 3 - 6)
+
+
+X-o
+---
+o--
+
+0 || 8 -> 2
+else -> 0
+
+
+Blocking the strat
+1. Midten
+2. Siden
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+XOX
+O0X
+OXO
+
+
+135
+
+012
+345
+678
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

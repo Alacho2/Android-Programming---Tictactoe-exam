@@ -108,6 +108,7 @@ class Game : FragmentHelper(), View.OnClickListener {
         .mapNotNull { view?.findViewById<Button>(it) }
         .forEach { it.isEnabled =  false }
         */
+      Log.d("Found", "Found")
       for(i in 0..9){
         val resourceId: Int = resources.getIdentifier("button$i", "id", activity!!.packageName)
         val button: Button? = view?.findViewById(resourceId)

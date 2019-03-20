@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+//import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_initiate_game.*
 import play.alacho.no.game.Player
 import play.alacho.no.game.SharedViewModel
@@ -26,9 +26,9 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    sharedViewModel = activity?.run {
+    /*sharedViewModel = activity?.run {
       ViewModelProviders.of(this).get(SharedViewModel::class.java)
-    } ?: throw Exception("Invalid Activity")
+    } ?: throw Exception("Invalid Activity")*/
 
   }
 
@@ -118,8 +118,8 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
     //TODO(Håvard) Remember to check if values are set. Make toast if they're not
     listener.changeFragment(R.id.mainActivityFragment, Game())
 
-    sharedViewModel.playerOne = playerOne
-    sharedViewModel.playerTwo = playerTwo
+    //sharedViewModel.playerOne = playerOne
+    //sharedViewModel.playerTwo = playerTwo
 
     //Send the data to the next fragment which is the actual game
     //Populate the player objects and pass it into the game

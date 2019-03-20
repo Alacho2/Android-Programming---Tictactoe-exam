@@ -1,7 +1,5 @@
 package play.alacho.no.game
 
-import android.util.Log
-
 class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
 
   val board: Array<Player?> = arrayOfNulls(9)
@@ -19,7 +17,6 @@ class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
       val winTile = findWinConditionFor(botPlayer, 1)
       // If we can't find a loss condition check for a loss condition and block it
       val lossTile = findWinConditionFor(humanPlayer, 1)
-
       val possibleWinCondition = findWinConditionFor(botPlayer, 2)
       when {
         winTile != null -> winTile
@@ -43,10 +40,16 @@ class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
   }
 
   private fun findWinConditionFor(targetPlayer: Player, requiredSpots: Int): Int? {
-    0.until(3).forEach{ idx ->
+    if(board[4] == humanPlayer && board[6] == humanPlayer){
+      return 2
+    }
+    if(board[4] == humanPlayer && board[2] == humanPlayer){
+      return 6
+    }
+    0.until(3).forEach { idx ->
       val openSpotsHorizontal = horizontalIndexesFor(idx, null)
       val playerSpotsHorizontal = horizontalIndexesFor(idx, targetPlayer)
-      if (openSpotsHorizontal.size == 3-requiredSpots && playerSpotsHorizontal.size == requiredSpots) {
+      if (openSpotsHorizontal.size == requiredSpots && playerSpotsHorizontal.size == 3-requiredSpots) {
         return openSpotsHorizontal.first()
       }
       val openSpotsVertical = verticalIndexesFor(idx, null)
@@ -60,7 +63,6 @@ class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
 
   private fun horizontalIndexesFor(row: Int, player: Player?) =
     (row * 3).until(row * 3 + 3).filter { board[it] == player }
-
   /*fun horizontalIndexesFor(row: Int, player: Player?) = mutableListOf<Int>().apply {
     for (idx in (row * 3).until(row * 3 + 3)) {
       if (board[idx] == player) {

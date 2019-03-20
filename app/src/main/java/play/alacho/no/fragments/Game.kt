@@ -81,6 +81,7 @@ class Game : FragmentHelper(), View.OnClickListener {
       }*/
       val something = gameLogic.nextMove()
       view?.findViewWithTag<Button>(something.toString())?.text = "O"
+      view?.findViewWithTag<Button>(something.toString())?.isEnabled = false
     }
     /*val winner = gameLogic.findWinner()
     if (winner != null) {
@@ -107,7 +108,7 @@ class Game : FragmentHelper(), View.OnClickListener {
         .mapNotNull { view?.findViewById<Button>(it) }
         .forEach { it.isEnabled =  false }
         */
-      for(i in 0.until(9)){
+      for(i in 0..9){
         val resourceId: Int = resources.getIdentifier("button$i", "id", activity!!.packageName)
         val button: Button? = view?.findViewById(resourceId)
         button?.isEnabled = false

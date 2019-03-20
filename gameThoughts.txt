@@ -22,6 +22,7 @@ o--
 else -> 0
 
 
+
 Blocking the strat
 1. Midten
 2. Siden

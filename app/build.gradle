@@ -37,7 +37,7 @@ dependencies {
     implementation "org.apache.commons:commons-lang3:$commons_lang_version"
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    implementation "android.arch.lifecycle:compiler:1.1.1"
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    implementation "android.arch.lifecycle:viewmodel:1.1.0"
+    //annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 }

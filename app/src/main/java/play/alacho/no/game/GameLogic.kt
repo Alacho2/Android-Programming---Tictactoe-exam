@@ -1,7 +1,5 @@
 package play.alacho.no.game
 
-import android.util.Log
-
 class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
 
   val board: Array<Player?> = arrayOfNulls(9)
@@ -29,8 +27,8 @@ class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
   }
 
   private fun firstMove(firstMove: Int) =  when(firstMove) { // check first placement
-    in arrayOf(0,2,6,8,7) -> 4
-    in arrayOf(1,3) -> 8
+    in arrayOf(0,2,6,8,7,1) -> 4
+    in arrayOf(3) -> 8
     else -> 0
   }
 
@@ -41,7 +39,7 @@ class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
   }
 
   private fun findWinConditionFor(targetPlayer: Player, requiredSpots: Int): Int? {
-    deadLockMoves()
+    if(deadLockMoves() != null) return deadLockMoves()
     0.until(3).forEach { idx ->
       val openSpotsHorizontal = horizontalIndexesFor(idx, null)
       val playerSpotsHorizontal = horizontalIndexesFor(idx, targetPlayer)
@@ -57,11 +55,11 @@ class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
     return null
   }
 
-  private fun deadLockMoves() = when {
-    board[4] == humanPlayer && board[6] == humanPlayer && board[2] == null -> 2
-    board[4] == humanPlayer && board[2] == humanPlayer && board[6] == null -> 6
-    //board[6] == humanPlayer && board[7] == humanPlayer && board[8] == null -> 8
-    else -> null
+  private fun deadLockMoves(): Int? = when {
+      board[4] == humanPlayer && board[6] == humanPlayer && board[2] == null -> 2
+      board[4] == humanPlayer && board[2] == humanPlayer && board[6] == null -> 6
+      board[6] == humanPlayer && board[7] == humanPlayer && board[8] == null -> 8
+      else -> null
   }
 
   private fun horizontalIndexesFor(row: Int, player: Player?) =

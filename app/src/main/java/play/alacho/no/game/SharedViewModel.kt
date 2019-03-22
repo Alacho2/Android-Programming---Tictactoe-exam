@@ -6,4 +6,5 @@ class SharedViewModel:ViewModel() {
   var safet = "Is cool"
   var playerOne: Player = Player()
   var playerTwo: Player = Player()
+
 }

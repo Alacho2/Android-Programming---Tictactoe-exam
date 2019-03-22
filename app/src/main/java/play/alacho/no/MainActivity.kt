@@ -3,6 +3,7 @@ package play.alacho.no
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 import play.alacho.no.audio.AudioPlayer
@@ -26,7 +27,9 @@ class MainActivity : AppCompatActivity(), FragmentHelper.OnFragmentChange {
     with(fragmentManager.beginTransaction()) {
       setCustomAnimations(R.anim.abc_fade_in, 0)
       replace(id, fragment)
-      addToBackStack(null)
+      if(fragment::class.java.toString() != MainPageFragment()::class.java.toString()) {
+        addToBackStack(null)
+      }
       commit()
     }
     AudioPlayer.init(this, R.raw.pacman_eatfruit).startAudio()

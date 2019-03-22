@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import play.alacho.no.game.GameLogic
 import play.alacho.no.game.SharedViewModel
@@ -34,10 +35,12 @@ class Game : FragmentHelper(), View.OnClickListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
     sharedViewModel = activity?.run {
       ViewModelProviders.of(this).get(SharedViewModel::class.java)
     } ?: throw Exception("Invalid Activity")
+
+    sharedViewModel.playerOne.name = "Håvard"
+    sharedViewModel.playerTwo.name = "TTTBot"
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -74,10 +77,10 @@ class Game : FragmentHelper(), View.OnClickListener {
         gameLogic.board[text.tag.toString().toInt()] = sharedViewModel.playerOne
       }
       val winner = gameLogic.findWinner()
-      /*if (winner != null) {
+      if (winner != null) {
         Toast.makeText(activity!!.applicationContext, "${winner.name} has won!", Toast.LENGTH_SHORT).show()
         return
-      }*/
+      }
       val something = gameLogic.nextMove()
       view?.findViewWithTag<Button>(something.toString())?.text = "O"
       view?.findViewWithTag<Button>(something.toString())?.isEnabled = false

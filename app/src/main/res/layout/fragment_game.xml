@@ -82,5 +82,10 @@
             android:tag="8"
             android:text="Button" />
 
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:countDown="false"
+            android:format="MM:SS" />
+
     </androidx.gridlayout.widget.GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

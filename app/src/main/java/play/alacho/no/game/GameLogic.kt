@@ -1,6 +1,6 @@
 package play.alacho.no.game
 
-class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
+class GameLogic(private val humanPlayer: Player, private val botPlayer: Player) {
 
   val board: Array<Player?> = arrayOfNulls(9)
 
@@ -13,22 +13,21 @@ class GameLogic(val humanPlayer: Player, val botPlayer: Player) {
     return if(filledSpots.size == 1){
       firstMove(filledSpots.first())
     } else {
-      val winTile = findWinConditionFor(botPlayer, 1) // Try to find a win condition
-      // If we can't find a win condition check for a loss condition and block it
+      val winTile = findWinConditionFor(botPlayer, 1)
       val lossTile = findWinConditionFor(humanPlayer, 1)
       val possibleWinCondition = findWinConditionFor(botPlayer, 2)
       when {
         winTile != null -> winTile
         lossTile != null -> lossTile
         possibleWinCondition != null -> possibleWinCondition
-        else -> 0.until(3).flatMap { horizontalIndexesFor(it, null) }.first() // No possible win conditions, take first open
+        else -> 0.until(3).flatMap { horizontalIndexesFor(it, null) }.first()
+        // No possible win conditions, take first open
       }
     }
   }
 
-  private fun firstMove(firstMove: Int) =  when(firstMove) { // check first placement
-    in arrayOf(0,2,6,8,7,1) -> 4
-    in arrayOf(3) -> 8
+  private fun firstMove(firstMove: Int) =  when(firstMove) {
+    in arrayOf(0,2,6,8,7,1,3) -> 4
     else -> 0
   }
 

@@ -1,6 +1,8 @@
 package play.alacho.no.game
 
-class GameLogic(private val humanPlayer: Player, private val botPlayer: Player) {
+import android.util.Log
+
+class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?) {
 
   val board: Array<Player?> = arrayOfNulls(9)
 
@@ -21,7 +23,6 @@ class GameLogic(private val humanPlayer: Player, private val botPlayer: Player) 
         lossTile != null -> lossTile
         possibleWinCondition != null -> possibleWinCondition
         else -> 0.until(3).flatMap { horizontalIndexesFor(it, null) }.first()
-        // No possible win conditions, take first open
       }
     }
   }
@@ -31,19 +32,30 @@ class GameLogic(private val humanPlayer: Player, private val botPlayer: Player) 
     else -> 0
   }
 
-  fun findWinner(): Player? = when {
-    findWinConditionFor(botPlayer, 3) == -1 -> botPlayer
-    findWinConditionFor(humanPlayer, 3) == -1 -> humanPlayer
+  /*fun findWinner(): Player? = when {
+    findWinConditionFor(botPlayer, 3) == null -> botPlayer
+    findWinConditionFor(humanPlayer, 3) == null -> humanPlayer
     else -> null
+  } */
+
+  fun findWinner() {
+    val boardSpots = board.mapIndexed { _, value -> value?.let {
+      if(it == humanPlayer){
+        1
+      } else {
+        2
+      }
+    }}
+
+    boardSpots.forEach { Log.d("Board", it.toString()) }
   }
 
-  private fun findWinConditionFor(targetPlayer: Player, requiredSpots: Int): Int? {
-    if(deadLockMoves() != null) return deadLockMoves()
+  private fun findWinConditionFor(targetPlayer: Player?, requiredSpots: Int): Int? {
     0.until(3).forEach { idx ->
       val openSpotsHorizontal = horizontalIndexesFor(idx, null)
       val playerSpotsHorizontal = horizontalIndexesFor(idx, targetPlayer)
       if (openSpotsHorizontal.size == requiredSpots && playerSpotsHorizontal.size == 3-requiredSpots) {
-        return openSpotsHorizontal.first()
+        return openSpotsHorizontal.last()
       }
       val openSpotsVertical = verticalIndexesFor(idx, null)
       val playerSpotsVertical = verticalIndexesFor(idx, targetPlayer)
@@ -52,13 +64,6 @@ class GameLogic(private val humanPlayer: Player, private val botPlayer: Player) 
       }
     }
     return null
-  }
-
-  private fun deadLockMoves(): Int? = when {
-      board[4] == humanPlayer && board[6] == humanPlayer && board[2] == null -> 2
-      board[4] == humanPlayer && board[2] == humanPlayer && board[6] == null -> 6
-      board[6] == humanPlayer && board[7] == humanPlayer && board[8] == null -> 8
-      else -> null
   }
 
   private fun horizontalIndexesFor(row: Int, player: Player?) =

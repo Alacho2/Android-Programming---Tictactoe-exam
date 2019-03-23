@@ -4,21 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-//import androidx.lifecycle.ViewModelProviders
+import android.widget.FrameLayout
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_initiate_game.*
 import play.alacho.no.game.Player
-import play.alacho.no.game.SharedViewModel
+import play.alacho.no.viewmodel.SharedViewModel
 import play.alacho.no.pgr202_tictactoe.R
 
 class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
 
   private var currentValue: String = ""
-  private var playerOne: Player = Player()
-  private var playerTwo: Player = Player()
   private var playerOneSelected: Boolean = false
-  private var onePlayerMode: Boolean = false
   private var names: MutableList<String> = mutableListOf()
   private lateinit var sharedViewModel: SharedViewModel
+  private lateinit var playerOne: Player
+  private lateinit var playerTwo: Player
 
   companion object {
     private const val PADDING_VALUE: Int = 30
@@ -26,10 +27,13 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    /*sharedViewModel = activity?.run {
+    sharedViewModel = activity?.run {
       ViewModelProviders.of(this).get(SharedViewModel::class.java)
-    } ?: throw Exception("Invalid Activity")*/
+    } ?: throw Exception("Invalid Activity")
 
+    playerOne = sharedViewModel.playerOne
+    playerTwo = sharedViewModel.playerTwo
+    resetPlayerInto()
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -51,21 +55,13 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
 
   override fun onClick(v: View) {
     when (v.id) {
-      R.id.botSelector -> {
-        botSelector()
-      }
-      R.id.startGameBtn -> {
-        beginGame()
-      }
-      else -> {
-        handleImageClick(v.tag.toString())
-      }
+      R.id.botSelector -> { botSelector() }
+      R.id.startGameBtn -> { beginGame() }
+      else -> { handleImageClick(v.tag.toString()) }
     }
   }
 
   private fun botSelector() {
-
-    onePlayerMode = botSelector.isChecked
 
     var randomName = names.random()
 
@@ -73,11 +69,11 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
       randomName = names.random()
     }
 
-    //Hent ut et navn fra arrayet, sjekk om det navnet er lik det som ligger i playerOne sin tag, bytt
-    if (onePlayerMode){
+    if (botSelector.isChecked){
       playerTwoNameInput.isEnabled = false
       currentValue = playerTwoNameInput.text.toString()
       playerTwoNameInput.setText(getString(R.string.botName))
+
       if(playerTwo.image?.background == null) {
         setImageValues(playerTwo, randomName, R.drawable.playertwo_button_border)
       }
@@ -85,10 +81,12 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
       playerTwoNameInput.isEnabled = true
       playerTwoNameInput.setText(currentValue)
 
-      //Clear the values before setting allowing new selection
-      playerTwo.image?.setBackgroundResource(0)
-      playerTwo.image?.setPadding(0,0,0,0)
-      playerTwo.image?.isEnabled = true
+      //Clear the values before allowing new selection
+      playerTwo.image?.let {
+        it.setBackgroundResource(0)
+        it.setPadding(0, 0, 0, 0)
+        it.isEnabled = true
+      }
       playerTwo.image = null
     }
   }
@@ -108,21 +106,29 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
       getString(R.string.cheImageDesc) -> { player.image = cherryImage }
       getString(R.string.pacImageDesc) -> { player.image = pacmanImage }
     }
-    player.image?.setBackgroundResource(resource)
-    player.image?.setPadding(PADDING_VALUE, PADDING_VALUE, PADDING_VALUE, PADDING_VALUE)
-    player.image?.isEnabled = false
+    player.image?.let {
+      it.setBackgroundResource(resource)
+      it.isEnabled = false
+      it.setPadding(PADDING_VALUE, PADDING_VALUE, PADDING_VALUE, PADDING_VALUE)
+    }
   }
 
   private fun beginGame() {
+    playerOne.name = playerOneNameInput.text.toString()
+    playerTwo.name = playerTwoNameInput.text.toString()
 
-    //TODO(Håvard) Remember to check if values are set. Make toast if they're not
-    listener.changeFragment(R.id.mainActivityFragment, Game())
+    if(playerOne.name.isBlank() || playerOne.image == null || playerTwo.name.isBlank() || playerTwo.image == null){
+      Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment), "You need to set name & image", Snackbar.LENGTH_SHORT).show()
+    } else {
+      listener.changeFragment(R.id.mainActivityFragment, Game())
+    }
+  }
 
-    //sharedViewModel.playerOne = playerOne
-    //sharedViewModel.playerTwo = playerTwo
-
-    //Send the data to the next fragment which is the actual game
-    //Populate the player objects and pass it into the game
+  private fun resetPlayerInto() {
+    playerOne.name = ""
+    playerTwo.name = ""
+    playerOne.image = null
+    playerTwo.image = null
   }
 
 }

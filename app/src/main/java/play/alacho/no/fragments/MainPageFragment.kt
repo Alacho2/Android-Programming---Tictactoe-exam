@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_main.*
-import play.alacho.no.game.SharedViewModel
+import play.alacho.no.viewmodel.SharedViewModel
 import play.alacho.no.pgr202_tictactoe.R
 
 class MainPageFragment : FragmentHelper(), View.OnClickListener{
@@ -21,7 +21,6 @@ class MainPageFragment : FragmentHelper(), View.OnClickListener{
     sharedViewModel = activity?.run {
       ViewModelProviders.of(this).get(SharedViewModel::class.java)
     } ?: throw Exception("Invalid Activity")
-    sharedViewModel.safet = "Is not cool"
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,7 +31,6 @@ class MainPageFragment : FragmentHelper(), View.OnClickListener{
     super.onActivityCreated(savedInstanceState)
     playGameBtn.setOnClickListener(this)
     highScoreBtn.setOnClickListener(this)
-
   }
 
   override fun onClick(v: View) {

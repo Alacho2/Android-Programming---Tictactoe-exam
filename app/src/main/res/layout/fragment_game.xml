@@ -6,88 +6,123 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="262dp"
-        android:layout_height="146dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="298dp"
+        android:layout_height="254dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:columnCount="3"
+        android:layout_marginBottom="52dp"
+        android:background="@mipmap/pacmanbac"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rowCount="3">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="0"
-            android:text="Button" />
+    <ImageButton
+        android:id="@+id/button1"
+        android:layout_width="71dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="0"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="225dp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="1"
-            android:text="Button" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="2"
-            android:text="Button" />
+    <ImageButton
+        android:id="@+id/button2"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="1"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="225dp" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="3"
-            android:text="Button" />
+    <ImageButton
+        android:id="@+id/button3"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="2"
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="225dp" />
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="4"
-            android:text="Button" />
+    <ImageButton
+        android:id="@+id/button4"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="3"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="325dp" />
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="5"
-            android:text="Button" />
+    <ImageButton
+        android:id="@+id/button5"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="4"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.453" />
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="6"
-            android:text="Button" />
+    <ImageButton
+        android:id="@+id/button6"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="5"
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="325dp" />
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="7"
-            android:text="Button" />
+    <ImageButton
+        android:id="@+id/button7"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="6"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="408dp" />
 
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="8"
-            android:text="Button" />
+    <ImageButton
+        android:id="@+id/button8"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="7"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="408dp" />
 
-        <Chronometer
-            android:id="@+id/chronometer"
-            android:countDown="false"
-            android:format="MM:SS" />
+    <ImageButton
+        android:id="@+id/button9"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/pacman"
+        android:tag="8"
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="408dp" />
 
-    </androidx.gridlayout.widget.GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

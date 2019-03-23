@@ -1,11 +1,11 @@
 package play.alacho.no.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProviders
 import play.alacho.no.game.GameLogic
 import play.alacho.no.viewmodel.SharedViewModel
@@ -33,7 +33,7 @@ class Game : FragmentHelper(), View.OnClickListener {
     super.onActivityCreated(savedInstanceState)
     for(i in 1..9){
       val resourceId: Int = resources.getIdentifier("button$i", "id", activity!!.packageName)
-      val button: Button? = view?.findViewById(resourceId)
+      val button: ImageButton? = view?.findViewById(resourceId)
       button?.setOnClickListener(this)
     }
     gameLogic = GameLogic(sharedViewModel.playerOne, sharedViewModel.playerTwo)

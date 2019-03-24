@@ -6,4 +6,5 @@ import play.alacho.no.game.Player
 class SharedViewModel:ViewModel() {
   var playerOne: Player = Player()
   var playerTwo: Player = Player()
+  var shouldAiPlay: Boolean = false
 }

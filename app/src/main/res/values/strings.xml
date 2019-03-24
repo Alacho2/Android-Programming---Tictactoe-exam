@@ -13,4 +13,7 @@
     <string name="inkImageDesc">Inky</string>
     <string name="start_game">Start Game</string>
     <string name="choose_your_weapon">Choose your weapon</string>
+    <string name="gameboard">gameBoard</string>
+    <string name="spot">spot</string>
+    <string name="playerIcon">Player Icon</string>
 </resources>

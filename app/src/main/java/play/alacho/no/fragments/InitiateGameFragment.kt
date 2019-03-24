@@ -33,7 +33,7 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
 
     playerOne = sharedViewModel.playerOne
     playerTwo = sharedViewModel.playerTwo
-    resetPlayerInto()
+    resetPlayerInfo()
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -65,15 +65,12 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
 
     var randomName = names.random()
 
-    while(playerOne.image?.tag == randomName){
-      randomName = names.random()
-    }
+    while(playerOne.image?.tag == randomName) randomName = names.random()
 
     if (botSelector.isChecked){
       playerTwoNameInput.isEnabled = false
       currentValue = playerTwoNameInput.text.toString()
       playerTwoNameInput.setText(getString(R.string.botName))
-
       if(playerTwo.image?.background == null) {
         setImageValues(playerTwo, randomName, R.drawable.playertwo_button_border)
       }
@@ -81,7 +78,6 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
       playerTwoNameInput.isEnabled = true
       playerTwoNameInput.setText(currentValue)
 
-      //Clear the values before allowing new selection
       playerTwo.image?.let {
         it.setBackgroundResource(0)
         it.setPadding(0, 0, 0, 0)
@@ -116,6 +112,7 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
   private fun beginGame() {
     playerOne.name = playerOneNameInput.text.toString()
     playerTwo.name = playerTwoNameInput.text.toString()
+    sharedViewModel.shouldAiPlay = botSelector.isChecked
 
     if(playerOne.name.isBlank() || playerOne.image == null || playerTwo.name.isBlank() || playerTwo.image == null){
       Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment), "You need to set name & image", Snackbar.LENGTH_SHORT).show()
@@ -124,13 +121,17 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
     }
   }
 
-  private fun resetPlayerInto() {
-    playerOne.name = ""
-    playerTwo.name = ""
-    playerOne.image = null
-    playerTwo.image = null
-    playerOne.moveList = mutableListOf()
-    playerTwo.moveList = mutableListOf()
+  private fun resetPlayerInfo() {
+    with(playerOne){
+      name = ""
+      image = null
+      moveList = mutableListOf()
+    }
+    with(playerTwo){
+      name = ""
+      image = null
+      moveList = mutableListOf()
+    }
   }
 
 }

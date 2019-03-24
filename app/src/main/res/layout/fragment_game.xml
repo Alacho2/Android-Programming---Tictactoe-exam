@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="298dp"
+        android:layout_width="296dp"
         android:layout_height="254dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -19,52 +19,65 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.494" />
 
     <ImageButton
         android:id="@+id/button1"
         android:layout_width="71dp"
         android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="0"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="225dp" />
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
 
     <ImageButton
         android:id="@+id/button2"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="1"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="225dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <ImageButton
         android:id="@+id/button3"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="2"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="225dp" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <ImageButton
         android:id="@+id/button4"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="3"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="325dp" />
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
 
     <ImageButton
         android:id="@+id/button5"
@@ -72,7 +85,6 @@
         android:layout_height="60dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="4"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -85,44 +97,80 @@
         android:id="@+id/button6"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="5"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="325dp" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <ImageButton
         android:id="@+id/button7"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="6"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="408dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintVertical_bias="0.909" />
 
     <ImageButton
         android:id="@+id/button8"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="7"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="408dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/button9"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pacman"
         android:tag="8"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="408dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toEndOf="@+id/button8"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintVertical_bias="0.909" />
+
+
+    <ImageView
+        android:id="@+id/playerOneIcon"
+        android:layout_width="32dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="@+id/button7"
+        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintStart_toStartOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/playerTwoIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="@+id/button9"
+        app:layout_constraintStart_toStartOf="@+id/button9"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

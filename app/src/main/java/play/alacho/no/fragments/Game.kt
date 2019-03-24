@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_game.*
 import play.alacho.no.game.GameLogic
 import play.alacho.no.game.Player
@@ -78,7 +80,7 @@ class Game : FragmentHelper(), View.OnClickListener {
     }
     val winner = checkWinner()
     if(winner != null && gameLogic.board.size > 4){
-      Log.d("Found a winner", winner.name+"-")
+      Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment), "${winner.name} won the game", Snackbar.LENGTH_SHORT).show()
     }
   }
 

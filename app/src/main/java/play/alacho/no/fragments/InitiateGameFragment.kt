@@ -117,11 +117,11 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
     playerOne.name = playerOneNameInput.text.toString()
     playerTwo.name = playerTwoNameInput.text.toString()
 
-    /*if(playerOne.name.isBlank() || playerOne.image == null || playerTwo.name.isBlank() || playerTwo.image == null){
+    if(playerOne.name.isBlank() || playerOne.image == null || playerTwo.name.isBlank() || playerTwo.image == null){
       Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment), "You need to set name & image", Snackbar.LENGTH_SHORT).show()
-    } else {*/
+    } else {
       listener.changeFragment(R.id.mainActivityFragment, Game())
-    //}
+    }
   }
 
   private fun resetPlayerInto() {

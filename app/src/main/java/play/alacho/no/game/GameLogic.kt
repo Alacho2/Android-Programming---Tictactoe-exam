@@ -1,7 +1,5 @@
 package play.alacho.no.game
 
-import android.util.Log
-
 class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?) {
 
   val board: Array<Player?> = arrayOfNulls(9)
@@ -37,15 +35,6 @@ class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?
     findWinConditionFor(humanPlayer, 3) == null -> humanPlayer
     else -> null
   } */
-
-  fun findWinner() {
-    val boardSpots = board.mapIndexed { _, value -> value?.let {
-      if (it == humanPlayer) 1 else 2
-    }}
-
-
-
-  }
 
   private fun findWinConditionFor(targetPlayer: Player?, requiredSpots: Int): Int? {
     0.until(3).forEach { idx ->

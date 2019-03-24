@@ -19,6 +19,13 @@ class Game : FragmentHelper(), View.OnClickListener {
   private lateinit var gameLogic: GameLogic
   private lateinit var playerOne: Player
   private lateinit var playerTwo: Player
+  // 0 1 2
+  // 3 4 5
+  // 6 7 8
+  private var winningList: List<List<Int>> =
+    listOf( listOf(0,1,2), listOf(3,4,5), listOf(6,7,8), listOf(0,3,6),
+      listOf(1,4,5), listOf(2,5,8), listOf(0,4,8), listOf(2,4,6)
+    )
 
   //TODO(Håvard) Should be a list in the Player object
 
@@ -34,6 +41,8 @@ class Game : FragmentHelper(), View.OnClickListener {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.fragment_game, container, false)
   }
+
+  //Push trekket til en playerliste, sjekke på den listen
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
@@ -52,25 +61,35 @@ class Game : FragmentHelper(), View.OnClickListener {
   }
 
   private fun gameButton(v: View) {
+
+    //TODO(Håvard): Clean up before exam
     if (isAgainstAi) {
       view?.findViewById<ImageButton>(v.id)?.let { button ->
         button.setImageDrawable(playerOne.image?.drawable)
         button.isEnabled = false
         gameLogic.board[button.tag.toString().toInt()] = sharedViewModel.playerOne
+        playerOne.moveList.add(button.tag.toString().toInt())
       }
+      playerOne.moveList.forEach { Log.d("something", it.toString()) }
       if(gameLogic.board.filterNotNull().size <= 7) {
         val something = gameLogic.nextMove()
         view?.findViewWithTag<ImageButton>(something.toString())?.let { button ->
           button.setImageDrawable(playerTwo.image?.drawable)
           button.isEnabled = false
+        playerTwo.moveList.add(button.tag.toString().toInt())
         }
+      playerTwo.moveList.forEach { Log.d("Player Two", it.toString()) }
       }
-
-
-      val winner = gameLogic.findWinner()
-      /*if(winner != null && gameLogic.board.filterNotNull().size > 4){
-      Log.d("Message", winner.name)
-    } */
     }
+    val winner = checkWinner()
+    if(winner != null && gameLogic.board.size > 4){
+      Log.d("Found a winner", winner.name+"-")
+    }
+  }
+
+  private fun checkWinner() = when {
+    winningList.any { item -> playerOne.moveList.containsAll(item) } -> playerOne
+    winningList.any { item -> playerTwo.moveList.containsAll(item) } -> playerTwo
+    else -> null
   }
 }

@@ -39,8 +39,6 @@ class Game : FragmentHelper(), View.OnClickListener {
     return inflater.inflate(R.layout.fragment_game, container, false)
   }
 
-  //Push trekket til en playerliste, sjekke på den listen
-
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     for (i in 1..9) {
@@ -78,13 +76,22 @@ class Game : FragmentHelper(), View.OnClickListener {
       playerTwo.moveList.forEach { Log.d("Player Two", it.toString()) }
       }
     }
-    val winner = checkWinner()
+    val winner = findWinner()
     if(winner != null && gameLogic.board.size > 4){
-      Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment), "${winner.name} won the game", Snackbar.LENGTH_SHORT).show()
+      Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment),
+        "${winner.name} won the game",
+        Snackbar.LENGTH_LONG)
+        .setAction("RESTART") { listener.changeFragment(R.id.mainActivityFragment, MainPageFragment()) }
+        .show()
+      1.until(10).forEach{ idx ->
+        val resourceId: Int = resources.getIdentifier("button$idx", "id", activity!!.packageName)
+        val button: ImageButton? = view?.findViewById(resourceId)
+        button?.isEnabled = false
+      }
     }
   }
 
-  private fun checkWinner() = when {
+  private fun findWinner() = when {
     winningList.any { item -> playerOne.moveList.containsAll(item) } -> playerOne
     winningList.any { item -> playerTwo.moveList.containsAll(item) } -> playerTwo
     else -> null

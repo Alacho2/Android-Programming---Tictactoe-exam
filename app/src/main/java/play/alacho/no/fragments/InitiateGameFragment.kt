@@ -129,6 +129,8 @@ class InitiateGameFragment : FragmentHelper(), View.OnClickListener {
     playerTwo.name = ""
     playerOne.image = null
     playerTwo.image = null
+    playerOne.moveList = mutableListOf()
+    playerTwo.moveList = mutableListOf()
   }
 
 }

@@ -1,7 +1,6 @@
 package play.alacho.no.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,8 +47,6 @@ class Game : FragmentHelper(), View.OnClickListener {
       val button: ImageButton? = view?.findViewById(resourceId)
       button?.setOnClickListener(this)
     }
-    Log.d("AI", "${sharedViewModel.shouldAiPlay}")
-
     gameLogic = GameLogic(playerOne, playerTwo)
     playerOneIcon.setImageDrawable(playerOne.image?.drawable)
     playerTwoIcon.setImageDrawable(playerTwo.image?.drawable)
@@ -68,17 +65,17 @@ class Game : FragmentHelper(), View.OnClickListener {
 
     //TODO(Håvard): Clean up before exam
     if (isAgainstAi) {
-      playHandler(playerOne, playerMove, null)
+      makeMoveFor(playerOne, playerMove, null)
       if (gameLogic.board.filterNotNull().size <= 7) {
         val aiMove = gameLogic.nextMove()
         val playerTwoMove = view?.findViewWithTag<ImageButton>(aiMove.toString())
-        playHandler(playerTwo, playerTwoMove, null)
+        makeMoveFor(playerTwo, playerTwoMove, null)
       }
     } else {
       if(playerOnesTurn) {
-        playHandler(playerOne, playerMove, false)
+        makeMoveFor(playerOne, playerMove, false)
       } else {
-        playHandler(playerTwo, playerMove, true)
+        makeMoveFor(playerTwo, playerMove, true)
       }
     }
 
@@ -103,8 +100,7 @@ class Game : FragmentHelper(), View.OnClickListener {
     }
   }
 
-  private fun playHandler(player: Player, move: ImageButton?, playerOnesTurn: Boolean?){
-    Log.d(player.name, "Message")
+  private fun makeMoveFor(player: Player, move: ImageButton?, playerOnesTurn: Boolean?){
     move?.setImageDrawable(player.image?.drawable)
     move?.isEnabled = false
     player.moveList.add(move?.tag.toString().toInt())

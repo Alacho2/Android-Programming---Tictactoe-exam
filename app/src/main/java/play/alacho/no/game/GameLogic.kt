@@ -31,6 +31,7 @@ class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?
   }
 
   private fun findWinConditionFor(targetPlayer: Player?, requiredSpots: Int): Int? {
+    if(board[4] == humanPlayer && board[6] == humanPlayer && board[2] == null) return 2
     0.until(3).forEach { idx ->
       val openSpotsHorizontal = horizontalIndexesFor(idx, null)
       val playerSpotsHorizontal = horizontalIndexesFor(idx, targetPlayer)
@@ -40,7 +41,7 @@ class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?
       val openSpotsVertical = verticalIndexesFor(idx, null)
       val playerSpotsVertical = verticalIndexesFor(idx, targetPlayer)
       if (openSpotsVertical.size == requiredSpots  && playerSpotsVertical.size == 3-requiredSpots) {
-        return openSpotsVertical.last()
+        return openSpotsVertical.first()
       }
     }
     return null

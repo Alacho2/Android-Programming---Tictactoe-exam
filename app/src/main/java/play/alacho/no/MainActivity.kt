@@ -1,5 +1,6 @@
 package play.alacho.no
 
+import android.annotation.SuppressLint
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

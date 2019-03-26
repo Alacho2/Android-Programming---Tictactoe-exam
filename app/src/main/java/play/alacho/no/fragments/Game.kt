@@ -42,11 +42,14 @@ class Game : FragmentHelper(), View.OnClickListener {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    for (i in 1..9) {
-      val resourceId: Int = resources.getIdentifier("button$i", "id", activity!!.packageName)
+    0.until(10).forEach {idx ->
+      val resourceId: Int = resources.getIdentifier("button$idx", "id", activity!!.packageName)
       val button: ImageButton? = view?.findViewById(resourceId)
       button?.setOnClickListener(this)
     }
+    playerOne.moveList = mutableListOf()
+    playerTwo.moveList = mutableListOf()
+
     gameLogic = GameLogic(playerOne, playerTwo)
     playerOneIcon.setImageDrawable(playerOne.image?.drawable)
     playerTwoIcon.setImageDrawable(playerTwo.image?.drawable)
@@ -58,11 +61,10 @@ class Game : FragmentHelper(), View.OnClickListener {
     gameButton(v)
   }
 
-
   private fun gameButton(v: View) {
 
     val playerMove = view?.findViewById<ImageButton>(v.id)
-
+    //If isPlayerOnesTurn -> playerOneCode else isAgainstAi -> AI turn else playerTwoCode
     //TODO(Håvard): Clean up before exam
     if (isAgainstAi) {
       makeMoveFor(playerOne, playerMove, null)
@@ -81,23 +83,24 @@ class Game : FragmentHelper(), View.OnClickListener {
 
     val winner = findWinner()
     if(winner != null && gameLogic.board.size > 4){
-      Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment),
-        "${winner.name} won the game",
-        Snackbar.LENGTH_LONG)
-        .setAction("RESTART") { listener.changeFragment(R.id.mainActivityFragment, MainPageFragment()) }
-        .show()
+        makeSnackbar("${winner.name} won the game").show()
       1.until(10).forEach { idx ->
         val resourceId: Int = resources.getIdentifier("button$idx", "id", activity!!.packageName)
         val button: ImageButton? = view?.findViewById(resourceId)
         button?.isEnabled = false
       }
     } else if(winner == null && gameLogic.board.filterNotNull().size == 9){
-      Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment),
-        "A draw has been made",
-        Snackbar.LENGTH_LONG)
-        .setAction("RESTART") { listener.changeFragment(R.id.mainActivityFragment, MainPageFragment()) }
-        .show()
+        makeSnackbar("A draw has been made").show()
     }
+  }
+
+  private fun makeSnackbar(message: String): Snackbar{
+    return Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment),
+      message,
+      Snackbar.LENGTH_INDEFINITE)
+      .setAction("RESTART") {
+        listener.changeFragment(R.id.mainActivityFragment, Game())
+      }
   }
 
   private fun makeMoveFor(player: Player, move: ImageButton?, playerOnesTurn: Boolean?){

@@ -16,4 +16,7 @@
     <string name="gameboard">gameBoard</string>
     <string name="spot">spot</string>
     <string name="playerIcon">Player Icon</string>
+    <string name="home">Home</string>
+    <string name="packageName">no.alacho.playerground.shared</string>
+    <string name="sharedPrefs">highscoreList</string>
 </resources>

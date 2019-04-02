@@ -1,6 +1,8 @@
 package play.alacho.no.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_game.*
+import org.json.JSONObject
 import play.alacho.no.game.GameLogic
 import play.alacho.no.game.Player
 import play.alacho.no.viewmodel.SharedViewModel
@@ -21,6 +24,8 @@ class Game : FragmentHelper(), View.OnClickListener {
   private lateinit var playerOne: Player
   private lateinit var playerTwo: Player
   private var playerOnesTurn: Boolean = true
+  private lateinit var packageName: String
+  private lateinit var prefsName: String
   private var winningList: List<List<Int>> =
     listOf( listOf(0,1,2), listOf(3,4,5), listOf(6,7,8), listOf(0,3,6),
       listOf(1,4,7), listOf(2,5,8), listOf(0,4,8), listOf(2,4,6)
@@ -34,6 +39,9 @@ class Game : FragmentHelper(), View.OnClickListener {
     playerOne = sharedViewModel.playerOne
     playerTwo = sharedViewModel.playerTwo
     isAgainstAi = sharedViewModel.shouldAiPlay
+    packageName = getString(R.string.packageName)
+    prefsName = getString(R.string.sharedPrefs)
+
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -64,7 +72,6 @@ class Game : FragmentHelper(), View.OnClickListener {
   private fun gameButton(v: View) {
 
     val playerMove = view?.findViewById<ImageButton>(v.id)
-    //If isPlayerOnesTurn -> playerOneCode else isAgainstAi -> AI turn else playerTwoCode
     //TODO(Håvard): Clean up before exam
     if (isAgainstAi) {
       makeMoveFor(playerOne, playerMove, null)
@@ -89,6 +96,30 @@ class Game : FragmentHelper(), View.OnClickListener {
         val button: ImageButton? = view?.findViewById(resourceId)
         button?.isEnabled = false
       }
+      //extract to method
+
+      val prefs = activity!!.getSharedPreferences(packageName, Context.MODE_PRIVATE)
+      val highScoreList = prefs.getStringSet(prefsName, setOf()).toMutableSet()
+
+      highScoreList.forEach {
+      val jsonObject = JSONObject(it)
+        val itemName = jsonObject.getString("Name")
+        var wins = jsonObject.getInt("Wins")
+
+        if(winner.name == itemName) {
+          winner.wins = ++wins
+          highScoreList.add(winner.toJSON().toString())
+          highScoreList.remove(it)
+          prefs.edit().putStringSet(getString(R.string.sharedPrefs), highScoreList).apply()
+          return
+        }
+      }
+
+      winner.wins = 1
+      highScoreList.add(winner.toJSON().toString())
+
+      prefs.edit().putStringSet(getString(R.string.sharedPrefs), highScoreList).apply()
+
     } else if(winner == null && gameLogic.board.filterNotNull().size == 9){
         makeSnackbar("A draw has been made").show()
     }
@@ -97,7 +128,7 @@ class Game : FragmentHelper(), View.OnClickListener {
   private fun makeSnackbar(message: String): Snackbar{
     return Snackbar.make(activity!!.findViewById<FrameLayout>(R.id.mainActivityFragment),
       message,
-      Snackbar.LENGTH_INDEFINITE)
+      Snackbar.LENGTH_LONG)
       .setAction("RESTART") {
         listener.changeFragment(R.id.mainActivityFragment, Game())
       }

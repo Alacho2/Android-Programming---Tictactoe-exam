@@ -42,7 +42,7 @@ class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?
       val openSpotsVertical = verticalIndexesFor(idx, null)
       val playerSpotsVertical = verticalIndexesFor(idx, targetPlayer)
       if (openSpotsVertical.size == requiredSpots  && playerSpotsVertical.size == 3-requiredSpots) {
-        return openSpotsVertical.first()
+        return openSpotsVertical.last()
       }
     }
     return null

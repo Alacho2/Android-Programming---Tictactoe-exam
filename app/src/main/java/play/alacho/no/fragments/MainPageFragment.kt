@@ -12,9 +12,7 @@ import play.alacho.no.pgr202_tictactoe.R
 
 class MainPageFragment : FragmentHelper(), View.OnClickListener{
 
-
   private lateinit var sharedViewModel: SharedViewModel
-
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -39,7 +37,7 @@ class MainPageFragment : FragmentHelper(), View.OnClickListener{
         listener.changeFragment(R.id.mainActivityFragment, InitiateGameFragment())
       }
       R.id.highScoreBtn -> {
-        Log.d("Hallo", "Hei")
+        listener.changeFragment(R.id.mainActivityFragment, HighScoreFragment())
       }
     }
   }

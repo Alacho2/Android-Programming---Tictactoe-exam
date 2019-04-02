@@ -1,12 +1,10 @@
 package play.alacho.no.recyclerview
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.high_score_item.view.*
-import org.json.JSONObject
 import play.alacho.no.game.Player
 import play.alacho.no.pgr202_tictactoe.R
 
@@ -29,15 +27,13 @@ class HighScoreAdapter(private val highScoreList: List<Player>) : RecyclerView.A
 
     private lateinit var highScoreItem: Player
     private var view = v
-    var name: String = ""
     var highScorePlace: Int = 0
 
     fun bindHighScore(highScoreItem: Player, position: Int){
       this.highScoreItem = highScoreItem
       this.highScorePlace = position
-      //val jsonObject = JSONObject(this.highScoreItem)
       view.name.text = highScoreItem.name
-      view.position.text = this.highScorePlace.toString()
+      view.position.text = this.highScorePlace.inc().toString()
       view.numberOfWins.text = highScoreItem.wins.toString()
     }
   }

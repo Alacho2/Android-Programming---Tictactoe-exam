@@ -207,4 +207,18 @@
         app:layout_constraintStart_toStartOf="@+id/playerTwoIcon"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+    <Chronometer
+        android:id="@+id/gameTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/playerTwoIcon"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toEndOf="@+id/playerOneIcon"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:textColor="@color/logoColor"
+        android:textSize="20sp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

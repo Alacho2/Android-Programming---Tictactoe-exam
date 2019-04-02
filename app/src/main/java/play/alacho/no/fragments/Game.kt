@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProviders
@@ -41,7 +42,6 @@ class Game : FragmentHelper(), View.OnClickListener {
     isAgainstAi = sharedViewModel.shouldAiPlay
     packageName = getString(R.string.packageName)
     prefsName = getString(R.string.sharedPrefs)
-
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -63,6 +63,12 @@ class Game : FragmentHelper(), View.OnClickListener {
     playerTwoIcon.setImageDrawable(playerTwo.image?.drawable)
     playerOneName.text = playerOne.name
     playerTwoName.text = playerTwo.name
+    activity!!.findViewById<Chronometer>(R.id.gameTimer).start()
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    gameTimer.stop()
   }
 
   override fun onClick(v: View) {

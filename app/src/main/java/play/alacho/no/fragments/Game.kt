@@ -96,6 +96,7 @@ class Game : FragmentHelper(), View.OnClickListener {
 
     val winner = findWinner()
     if(winner != null && gameLogic.board.size > 4){
+      activity!!.findViewById<Chronometer>(R.id.gameTimer).stop()
         makeSnackbar("${winner.name} won the game").show()
       1.until(10).forEach { idx ->
         val resourceId: Int = resources.getIdentifier("button$idx", "id", activity!!.packageName)
@@ -127,6 +128,7 @@ class Game : FragmentHelper(), View.OnClickListener {
       prefs.edit().putStringSet(getString(R.string.sharedPrefs), highScoreList).apply()
 
     } else if(winner == null && gameLogic.board.filterNotNull().size == 9){
+      activity!!.findViewById<Chronometer>(R.id.gameTimer).stop()
         makeSnackbar("A draw has been made").show()
     }
   }

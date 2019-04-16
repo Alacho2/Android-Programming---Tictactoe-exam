@@ -26,7 +26,9 @@ class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?
   }
 
   private fun firstMove(firstMove: Int) =  when(firstMove) {
-    in arrayOf(0,2,6,8,7,1,3,5) -> 4
+    in arrayOf(0,2,6,8,1,3) -> 4
+    5 -> 8
+    7 -> 8
     else -> 0
   }
 
@@ -37,12 +39,12 @@ class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?
       val openSpotsHorizontal = horizontalIndexesFor(idx, null)
       val playerSpotsHorizontal = horizontalIndexesFor(idx, targetPlayer)
       if (openSpotsHorizontal.size == requiredSpots && playerSpotsHorizontal.size == 3-requiredSpots) {
-        return openSpotsHorizontal.last()
+        return openSpotsHorizontal.first()
       }
       val openSpotsVertical = verticalIndexesFor(idx, null)
       val playerSpotsVertical = verticalIndexesFor(idx, targetPlayer)
       if (openSpotsVertical.size == requiredSpots  && playerSpotsVertical.size == 3-requiredSpots) {
-        return openSpotsVertical.last()
+        return openSpotsVertical.first()
       }
     }
     return null

@@ -27,8 +27,7 @@ class GameLogic(private val humanPlayer: Player?, private val botPlayer: Player?
 
   private fun firstMove(firstMove: Int) =  when(firstMove) {
     in arrayOf(0,2,6,8,1,3) -> 4
-    5 -> 8
-    7 -> 8
+    in arrayOf(5,7) -> 8
     else -> 0
   }
 
